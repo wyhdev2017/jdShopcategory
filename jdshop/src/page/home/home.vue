@@ -172,6 +172,8 @@
 		created() {
 			this.$axios.all([this.getswiper()]).then(this.$axios.spread((res) => {
 				this.img = res.data.data.img;
+				//console.log("home")
+				this.$emit('hasLoad');
 			})).catch(res => {
 				console.log("请求失败了Recommend");
 			});

@@ -18,6 +18,8 @@ import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 Vue.use(MuseUI)
 /**使用muse-ui结束*/
+// 全局引入 mui.js
+import '../static/mui/js/mui.js'
 // rem初始化
 //import 'common/reset'
 // 引入通用样式
@@ -82,6 +84,7 @@ Vue.use(VueLazyLoad, {
   listenEvents: ['scroll']
 })
 import './css/index.css';
+import '../static/mui/css/mui.min.css';
 
 /* eslint-disable no-new */
 new Vue({

@@ -55,17 +55,20 @@
 <style scoped="scoped" lang="less">
 	@import url("../../common/less/variables.less");
 	.category-viewport {
-		width: 100%;
+		position:absolute;
+		height:100%;
+		overflow:hidden;
+		margin: -0.9rem 0 -56px 0 ;
 		.category-tab {
-			float: left;
+			position:absolute;
 			min-width: 152/@bs;
 			width: 192/@bs;
-			height: auto;
+			height: 100%;
+			padding: 0.9rem 0 56px 0 ;
 			overflow-y: auto;
-			min-height: 100%;
 			.ctab {
 				overflow-y: scroll;
-				height: 570*2/@bs;
+				height: 100%;
 				ul {
 					transform: translateY(0px);
 					/*width: 150/@bs;*/
@@ -94,10 +97,13 @@
 			}
 		}
 		.category-content {
+			float: right;
 			width: 100%;
 			font-size: 12px;
 			color: #252525;
-			height: auto;
+			height: 100%;
+			padding: 0.9rem 0 56px 0 ;
+			overflow-y: auto;
 			.branchScroll {
 				padding-left: 190/@bs;
 				background-color: #795DA3;
@@ -105,6 +111,9 @@
 					width: 100%;
 				}
 			}
+			&::-webkit-scrollbar {
+					display: none;
+				}
 		}
 	}
 </style>

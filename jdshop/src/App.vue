@@ -2,24 +2,31 @@
 	<div class="sn_layout" @mousewheel="scrollToTop">
 		<other-header-bar class="ahead" v-show='!headerBarShow'></other-header-bar>
 		<header-bar class="ahead" v-show='headerBarShow'></header-bar>
-		<router-view class="abody" id="myData"></router-view>
+		<router-view class="abody" id="myData" @hasLoad="hasLoad"></router-view>
 		<footer-bar class="aft"></footer-bar>
+		<loading v-if="!loadingFlag"></loading>
 	</div>
 </template>
 
 <script>
 	import FooterBar from 'components/footbar'
+	import Loading from 'components/loading/loading.vue'
 	import HeaderBar from 'components/headbar.vue'
 	import OtherHeaderBar from 'components/otherHeaderbar.vue'
 	import { mapState, mapActions, mapGetters } from 'vuex';
+	
+	import mui from 'static/mui/js/mui.js'
 	export default {
 		data() {
-			return {}
+			return {
+				loadingFlag: false
+			}
 		},
 		components: {
 			FooterBar,
 			HeaderBar,
-			OtherHeaderBar
+			OtherHeaderBar,
+			Loading
 		},
 		methods: {
 			...mapActions(['changeTopShow', 'reduceCarNum']),
@@ -31,13 +38,42 @@
 				} else {
 					this.$store.dispatch('changeTopShow', false)
 				}
+			},
+			hasLoad() {
+				//console.log("app")
+				setTimeout(()=>{
+					this.loadingFlag = true;
+					console.log("app2")
+					},1000)
+				
 			}
 		},
 		computed: {
-			...mapState(["topShow","headerBarShow"]),
+			...mapState(["topShow", "headerBarShow"]),
 			...mapGetters(["gettersCount"])
 
-		}
+		},
+		 created (){
+  	var that = this;
+  	
+  	//初始化等待框
+  	mui.plusReady(function(){
+  		plus.nativeUI.showWaiting('初始化')	
+  	}  		
+  	)
+  	setTimeout(function(){
+  		mui.plusReady(function(){
+  			plus.nativeUI.closeWaiting();		
+  		}  		
+  	)
+  		//that.$router.push('/home')
+  	},1000)
+  	setTimeout(()=>{
+					this.loadingFlag = true;
+					console.log("app2")
+					},1000)
+		 	
+  }
 
 	}
 </script>
@@ -61,8 +97,8 @@
 		}
 		.abody {
 			width: 100%;
-			margin: 0;
-			padding: 0;
+			/*margin: 0;
+			padding: 0;*/
 			background-color: #795DA3;
 			/*height: 100%;
 			min-height: 46rem;*/
@@ -71,7 +107,6 @@
 		}
 		.aft {
 			width: 100%;
-			height: 100/@bs;
 			position: fixed;
 			bottom: 0;
 			left: 0;

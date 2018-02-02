@@ -1,6 +1,9 @@
 <template>
-	<div>
-		发现
+	<div class="header">
+		<div class="scanner">
+			<img src="./erweima.png" alt="">
+			<input type="file" name="file" capture="camera">
+		</div>
 	</div>
 </template>
 
@@ -52,6 +55,30 @@
 	}
 </script>
 
-<style>
-
+<style scoped="scoped" lang="less">
+	@import url("../../common/less/variables.less");
+	.header {
+		width: 100%;
+		height: 4.5rem;
+		background-color: #ffda44;
+		z-index: 10;
+		position: fixed;
+		top: 0;
+		display: -webkit-flex;
+		display: flex;
+		align-items: center;
+		.scanner {
+			width: 1rem;
+			height: 1rem;
+			margin-left: 1rem;
+			margin-right: 1rem;
+			img {
+				width: 1rem;
+				height: 1rem;
+			}
+			input {
+				display: block;
+			}
+		}
+	}
 </style>
